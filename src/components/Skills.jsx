@@ -96,7 +96,7 @@ export default function Skills() {
 
     const categories = useMemo(() => [
         {
-            title: "Lenguajes Aprendidos",
+            title: t.skills.categories.frontend,
             icon: 'fa-solid fa-code',
             skills: [
                 { name: 'React', icon: 'fa-brands fa-react', color: '#61DAFB' },
@@ -105,6 +105,7 @@ export default function Skills() {
                 { name: 'HTML5', icon: 'fa-brands fa-html5', color: '#E34F26' },
                 { name: 'CSS3', icon: 'fa-brands fa-css3-alt', color: '#1572B6' },
                 { name: 'TailwindCSS', icon: 'fa-solid fa-wind', color: '#06B6D4' },
+                { name: 'MongoDB', icon: 'fa-solid fa-leaf', color: '#47A248' },
             ],
         },
         {
@@ -122,6 +123,8 @@ export default function Skills() {
             skills: [
                 { name: 'Next.js', icon: 'fa-solid fa-n', color: '#ffffff' },
                 { name: 'Python', icon: 'fa-brands fa-python', color: '#3776AB' },
+                { name: 'Lua', icon: 'fa-solid fa-dragon', color: '#000080' },
+                { name: 'TypeScript', icon: 'fa-solid fa-t', color: '#3178C6' },
             ],
         },
     ], [t.skills.categories]);

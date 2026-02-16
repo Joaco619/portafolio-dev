@@ -6,16 +6,12 @@ export default function Experience() {
 
     const experienceMetadata = [
         {
-            tags: ['React', 'TailwindCSS', 'JavaScript', 'Freelance'],
+            tags: ['React', 'TailwindCSS', 'JavaScript', 'NodeJS', 'HTML5', 'CSS3', 'Lua'],
             icon: 'fa-solid fa-laptop-code',
         },
         {
-            tags: ['React', 'HTML/CSS', 'Git', 'APIs'],
-            icon: 'fa-solid fa-rocket',
-        },
-        {
-            tags: ['HTML', 'CSS', 'JavaScript', 'Fundamentos'],
-            icon: 'fa-solid fa-book',
+            tags: ['JavaScript', 'NodeJS'],
+            icon: 'fa-solid fa-book-open',
         },
     ];
 

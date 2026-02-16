@@ -31,16 +31,16 @@ export const translations = {
             stats: {
                 years: 'Años de experiencia',
                 projects: 'Proyectos completados',
-                technologies: 'Tecnologías',
+                technologies: 'Lenguajes',
             },
-            tagCloud: ['React', 'JavaScript', 'TypeScript', 'TailwindCSS', 'Next.js', 'Git', 'Figma'],
+            tagCloud: ['React', 'JavaScript', 'TailwindCSS', 'Node.js'],
         },
         skills: {
             label: '02. Skills',
             titleStart: 'Mi',
             titleHighlight: 'stack tecnológico',
             categories: {
-                frontend: 'Frontend',
+                frontend: 'Lenguajes Aprendidos',
                 tools: 'Herramientas',
                 learning: 'Aprendiendo',
             },
@@ -55,20 +55,20 @@ export const translations = {
             viewMore: 'Próximamente más en GitHub',
             items: [
                 {
-                    title: 'E-Commerce Dashboard',
-                    description: 'Panel de administración para e-commerce con gráficas interactivas, gestión de productos y analíticas en tiempo real. Diseño responsive y dark mode.',
+                    title: 'Página de servidor de FiveM',
+                    description: 'Tienda web para servidor de FiveM con integración de Tebex, panel de administración, sistema de whitelist con gestor propio y múltiples funcionalidades adicionales. Desarrollada con React, TailwindCSS, JavaScript y NodeJS. Diseño moderno, varias animaciones y totalmente responsive.',
                 },
                 {
-                    title: 'Weather App',
-                    description: 'Aplicación del clima con geolocalización, pronóstico extendido y animaciones dinámicas según las condiciones meteorológicas. API de Open-Meteo.',
+                    title: 'Taller de Pintura',
+                    description: 'Página web básica para un taller de pintura, con información de servicios, galería de trabajos anteriores y formulario de contacto. Enfocada en un diseño limpio y profesional. Todo usando HTML, CSS y JavaScript puro.',
                 },
                 {
                     title: 'Task Manager',
-                    description: 'Gestor de tareas con drag & drop, categorías, filtros avanzados y persistencia local. Interfaz limpia con micro-animaciones.',
+                    description: 'Gestor de tareas con drag & drop, categorías, filtros y persistencia local. Interfaz limpia con micro-animaciones.',
                 },
                 {
                     title: 'Portfolio Website',
-                    description: 'Este mismo portafolio — diseñado y desarrollado desde cero con React, TailwindCSS y Framer Motion. Performance optimizado y totalmente responsive.',
+                    description: 'Este mismo portafolio — diseñado y desarrollado desde cero con React y TailwindCSS.',
                 },
             ],
         },
@@ -79,21 +79,15 @@ export const translations = {
             items: [
                 {
                     role: 'Frontend Developer',
-                    company: 'Freelance',
-                    period: '2023 — Presente',
-                    description: 'Desarrollo de aplicaciones web a medida para clientes. Enfocado en interfaces responsivas, rendimiento y experiencia de usuario. Stack principal: React, TailwindCSS, Vite.',
-                },
-                {
-                    role: 'Frontend Developer Jr.',
                     company: 'Proyectos Personales',
-                    period: '2022 — 2023',
-                    description: 'Construcción de múltiples proyectos personales para aprender y dominar React, manejo de estado, consumo de APIs y diseño responsive. Contribuciones a proyectos open source.',
+                    period: '2024 — Presente',
+                    description: 'Siguiendo el mismo camino de antes, con cursos de YouTube y documentación, sigo creando proyectos personales para seguir aprendiendo y mejorando mis habilidades. Así adquiriendo conocimientos de React, TailwindCSS, y otros lenguajes de programación relacionados.',
                 },
                 {
                     role: 'Aprendizaje Autodidacta',
                     company: 'Self-taught',
-                    period: '2021 — 2022',
-                    description: 'Inicio del camino en el desarrollo web. Fundamentos sólidos de HTML, CSS y JavaScript. Primeros proyectos estáticos y descubrimiento de frameworks modernos.',
+                    period: '2023 — 2024',
+                    description: 'Inicio en el mundo de la programación, solamente con videos de YouTube y documentación fui adquieriendo conocimientos solidos de JavaScript, esto lo usé para crear mis primeros proyectos en Discord, haciendo bots para comunidades.',
                 },
             ],
         },
@@ -108,7 +102,7 @@ export const translations = {
                 name: 'Nombre',
                 namePlaceholder: 'Tu nombre',
                 email: 'Email',
-                emailPlaceholder: 'tu@email.com',
+                emailPlaceholder: 'Tu email',
                 message: 'Mensaje',
                 messagePlaceholder: 'Contame sobre tu proyecto...',
                 submit: 'Enviar mensaje',
@@ -152,16 +146,16 @@ export const translations = {
             stats: {
                 years: 'Years of Experience',
                 projects: 'Completed Projects',
-                technologies: 'Technologies',
+                technologies: 'Languages',
             },
-            tagCloud: ['React', 'JavaScript', 'TypeScript', 'TailwindCSS', 'Next.js', 'Git', 'Figma'],
+            tagCloud: ['React', 'JavaScript', 'TailwindCSS', 'Node.js'],
         },
         skills: {
             label: '02. Skills',
             titleStart: 'My',
             titleHighlight: 'tech stack',
             categories: {
-                frontend: 'Frontend',
+                frontend: 'Learned Languages',
                 tools: 'Tools',
                 learning: 'Learning',
             },
@@ -176,12 +170,12 @@ export const translations = {
             viewMore: 'More coming soon on GitHub',
             items: [
                 {
-                    title: 'E-Commerce Dashboard',
-                    description: 'Admin panel for e-commerce with interactive charts, product management, and real-time analytics. Responsive design and dark mode.',
+                    title: 'FiveM server page',
+                    description: 'FiveM server-based web store with Tebex integration, admin panel, custom whitelist management system, and numerous additional features. Developed using React, Tailwind CSS, JavaScript, and NodeJS. Modern design, various animations, and fully responsive.',
                 },
                 {
-                    title: 'Weather App',
-                    description: 'Weather app with geolocation, extended forecast, and dynamic animations based on weather conditions. Open-Meteo API.',
+                    title: 'Painting Workshop',
+                    description: 'Basic website for a paint shop, featuring service information, a gallery of past projects, and a contact form. Focused on a clean and professional design. All built using HTML, CSS, and pure JavaScript.',
                 },
                 {
                     title: 'Task Manager',
@@ -189,7 +183,7 @@ export const translations = {
                 },
                 {
                     title: 'Portfolio Website',
-                    description: 'This very portfolio — designed and developed from scratch with React, TailwindCSS, and Framer Motion. Optimized performance and fully responsive.',
+                    description: 'This very portfolio — designed and developed from scratch with React, TailwindCSS.',
                 },
             ],
         },
@@ -200,21 +194,15 @@ export const translations = {
             items: [
                 {
                     role: 'Frontend Developer',
-                    company: 'Freelance',
-                    period: '2023 — Present',
-                    description: 'Developing custom web apps for clients. Focused on responsive interfaces, performance, and user experience. Main stack: React, TailwindCSS, Vite.',
-                },
-                {
-                    role: 'Frontend Developer Jr.',
                     company: 'Personal Projects',
-                    period: '2022 — 2023',
-                    description: 'Building multiple personal projects to learn and master React, state management, API consumption, and responsive design. Open source contributions.',
+                    period: '2024 — Present',
+                    description: "Following the same path as before, with YouTube courses and documentation, I continue creating personal projects to keep learning and improving my skills. This way, I'm acquiring knowledge of React, Tailwind CSS, and other related programming languages.",
                 },
                 {
                     role: 'Self-taught Learning',
                     company: 'Self-taught',
-                    period: '2021 — 2022',
-                    description: 'Started the web development journey. Solid fundamentals in HTML, CSS, and JavaScript. First static projects and discovery of modern frameworks.',
+                    period: '2023 — 2024',
+                    description: 'I started in the world of programming, acquiring solid knowledge of JavaScript solely through YouTube videos and documentation. I used this to create my first projects on Discord, making bots for communities.',
                 },
             ],
         },
@@ -229,7 +217,7 @@ export const translations = {
                 name: 'Name',
                 namePlaceholder: 'Your name',
                 email: 'Email',
-                emailPlaceholder: 'you@email.com',
+                emailPlaceholder: 'Your email',
                 message: 'Message',
                 messagePlaceholder: 'Tell me about your project...',
                 submit: 'Send message',

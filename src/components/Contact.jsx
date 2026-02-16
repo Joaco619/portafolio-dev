@@ -1,12 +1,16 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState({ type: '', message: '' });
     const [loading, setLoading] = useState(false);
     const { t } = useLanguage();
+
+    // Initialize EmailJS with your PUBLIC_KEY from https://dashboard.emailjs.com/
+    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
     const handleChange = (e) => {
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -18,50 +22,30 @@ export default function Contact() {
         setStatus({ type: '', message: '' });
 
         try {
-            const response = await fetch('http://localhost:5000/api/contact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
+            const response = await emailjs.send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    to_email: import.meta.env.VITE_CONTACT_EMAIL,
+                    message: formData.message,
+                }
+            );
 
-            const data = await response.json();
-
-            if (response.ok) {
+            if (response.status === 200) {
                 setStatus({ type: 'success', message: t.language === 'es' ? '¡Mensaje enviado con éxito!' : 'Message sent successfully!' });
                 setFormData({ name: '', email: '', message: '' });
             } else {
-                setStatus({ type: 'error', message: data.message || (t.language === 'es' ? 'Error al enviar el mensaje.' : 'Error sending message.') });
+                setStatus({ type: 'error', message: t.language === 'es' ? 'Error al enviar el mensaje.' : 'Error sending message.' });
             }
         } catch (error) {
             console.error('Contact error:', error);
-            setStatus({ type: 'error', message: t.language === 'es' ? 'Error de conexión con el servidor.' : 'Server connection error.' });
+            setStatus({ type: 'error', message: t.language === 'es' ? 'Error al enviar el mensaje.' : 'Error sending message.' });
         } finally {
             setLoading(false);
         }
     };
-
-    const contactInfo = [
-        {
-            icon: 'fa-solid fa-envelope',
-            label: 'Email',
-            value: 'joaquinsposatogarcia656@gmail.com',
-            href: 'mailto:joaquinsposatogarcia656@gmail.com',
-        },
-        {
-            icon: 'fa-brands fa-github',
-            label: 'GitHub',
-            value: '@Joaco619',
-            href: 'https://github.com/Joaco619',
-        },
-        {
-            icon: 'fa-brands fa-linkedin-in',
-            label: 'LinkedIn',
-            value: 'Joaquin Sposato',
-            href: 'https://www.linkedin.com/in/joaquin-sposato-7464873b1/',
-        },
-    ];
 
     return (
         <section id="contact" className="py-28 relative">
@@ -85,65 +69,14 @@ export default function Contact() {
                     </p>
                 </motion.div>
 
-                <div className="grid lg:grid-cols-5 gap-10">
-                    
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true, margin: '-60px' }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        className="lg:col-span-2 space-y-4"
-                    >
-                        {contactInfo.map((info) => (
-                            <a
-                                key={info.label}
-                                href={info.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group flex items-center gap-4 p-4 rounded-xl glass-card hover:border-[var(--color-accent)]/20 transition-all duration-300"
-                            >
-                                <div className="w-10 h-10 rounded-lg bg-[var(--color-accent-dim)] flex items-center justify-center flex-shrink-0 group-hover:bg-[var(--color-accent)]/20 transition-colors">
-                                    <i className={`${info.icon} text-[var(--color-accent)]`} />
-                                </div>
-                                <div>
-                                    <div className="text-xs text-[var(--color-text-muted)] mb-0.5">{info.label}</div>
-                                    <div className="text-sm text-[var(--color-text-primary)] group-hover:text-[var(--color-accent)] transition-colors">
-                                        {info.value}
-                                    </div>
-                                </div>
-                            </a>
-                        ))}
-
-                        <div className="pt-4">
-                            <p className="text-xs text-[var(--color-text-muted)] mb-3 font-mono">{t.contact.socialLabel}</p>
-                            <div className="flex gap-3">
-                                {[
-                                    { icon: 'fa-brands fa-github', href: 'https://github.com/Joaco619' },
-                                    { icon: 'fa-brands fa-linkedin-in', href: 'https://www.linkedin.com/in/joaquin-sposato-7464873b1/' },
-                                    { icon: 'fa-brands fa-instagram', href: 'https://www.instagram.com/jjoaccooss/' },
-                                ].map((s, i) => (
-                                    <a
-                                        key={i}
-                                        href={s.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-10 h-10 rounded-lg glass-card flex items-center justify-center text-[var(--color-text-muted)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/20 transition-all duration-200"
-                                    >
-                                        <i className={`${s.icon}`} />
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    
+                <div>
                     <motion.form
                         onSubmit={handleSubmit}
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: '-60px' }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="lg:col-span-3 p-6 rounded-2xl glass-card space-y-5"
+                        className="max-w-2xl mx-auto p-6 rounded-2xl glass-card space-y-5"
                     >
                         <div className="grid sm:grid-cols-2 gap-4">
                             <div>

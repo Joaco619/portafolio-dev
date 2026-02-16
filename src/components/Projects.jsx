@@ -39,30 +39,34 @@ const ProjectCard = memo(({ project, index, prefersReducedMotion }) => (
                 </motion.div>
 
                 <div className="flex items-center gap-4">
-                    <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={prefersReducedMotion ? {} : { scale: 1.15, y: -2 }}
-                        whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
-                        className="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] 
-                                   transition-colors duration-300"
-                        aria-label="GitHub"
-                    >
-                        <i className="fa-brands fa-github text-xl" />
-                    </motion.a>
-                    <motion.a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={prefersReducedMotion ? {} : { scale: 1.15, y: -2 }}
-                        whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
-                        className="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] 
-                                   transition-colors duration-300"
-                        aria-label="Live demo"
-                    >
-                        <i className="fa-solid fa-arrow-up-right-from-square text-base" />
-                    </motion.a>
+                    {project.github && (
+                        <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={prefersReducedMotion ? {} : { scale: 1.15, y: -2 }}
+                            whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                            className="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] 
+                                       transition-colors duration-300"
+                            aria-label="GitHub"
+                        >
+                            <i className="fa-brands fa-github text-xl" />
+                        </motion.a>
+                    )}
+                    {project.live && (
+                        <motion.a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={prefersReducedMotion ? {} : { scale: 1.15, y: -2 }}
+                            whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                            className="text-[var(--color-text-muted)] hover:text-[var(--color-accent)] 
+                                       transition-colors duration-300"
+                            aria-label="Live demo"
+                        >
+                            <i className="fa-solid fa-arrow-up-right-from-square text-base" />
+                        </motion.a>
+                    )}
                 </div>
             </div>
 
@@ -112,32 +116,32 @@ export default function Projects() {
 
     const projectMetadata = useMemo(() => [
         {
-            tags: ['React', 'TailwindCSS', 'Chart.js', 'REST API'],
-            github: 'https://github.com/Joaco619',
-            live: '#',
+            tags: ['React', 'TailwindCSS', 'Javascript', 'NodeJS'],
             icon: 'fa-solid fa-chart-line',
             accent: 'var(--color-green-500)',
+            // Sin github ni live - NO aparecerán iconos
         },
         {
-            tags: ['React', 'Framer Motion', 'API', 'Geolocation'],
-            github: 'https://github.com/Joaco619',
-            live: '#',
-            icon: 'fa-solid fa-cloud-sun',
+            tags: ['HTML', 'CSS', 'JavaScript',],
+            icon: 'fa-solid fa-brush',
             accent: 'var(--color-green-400)',
+            // Sin github ni live - NO aparecerán iconos
         },
         {
-            tags: ['React', 'TypeScript', 'DnD Kit', 'LocalStorage'],
+            tags: ['React', 'TypeScript', 'LocalStorage'],
             github: 'https://github.com/Joaco619',
-            live: '#',
+            live: 'https://joaco619.github.io/task_manager/',
             icon: 'fa-solid fa-list-check',
             accent: 'var(--color-green-600)',
+            // Con ambos - aparecerán AMBOS iconos
         },
         {
             tags: ['React', 'TailwindCSS', 'Framer Motion', 'Vite'],
             github: 'https://github.com/Joaco619',
-            live: '#',
+            live: 'https://joaco619.github.io/portafolio-dev/',
             icon: 'fa-solid fa-laptop-code',
             accent: 'var(--color-green-300)',
+            // Con ambos - aparecerán AMBOS iconos
         },
     ], []);
 

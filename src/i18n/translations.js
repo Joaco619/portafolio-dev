@@ -23,7 +23,7 @@ export const translations = {
             label: '01. Sobre mí',
             titleStart: 'Un poco sobre',
             titleHighlight: 'quién soy',
-            bio1: 'Soy Joaquin Sposato, un desarrollador frontend apasionado por crear interfaces modernas y funcionales. Me encanta transformar ideas en experiencias digitales que sean intuitivas, rápidas y visualmente atractivas.',
+            bio1: 'Soy Joaquín Sposato, un desarrollador frontend apasionado por crear interfaces modernas y funcionales. Me encanta transformar ideas en experiencias digitales que sean intuitivas, rápidas y visualmente atractivas.',
             bio2Start: 'Mi stack principal gira alrededor de',
             bio2Highlight: 'React',
             bio2End: 'y el ecosistema JavaScript moderno. Disfruto trabajando con herramientas que permitan construir productos de calidad: desde el diseño de componentes hasta la optimización del rendimiento.',
@@ -44,12 +44,15 @@ export const translations = {
                 tools: 'Herramientas',
                 learning: 'Aprendiendo',
             },
+            filters: {
+                all: 'Todos'
+            },
         },
         projects: {
             label: '03. Proyectos',
             titleStart: 'Lo que he',
             titleHighlight: 'construido',
-            viewMore: 'Ver más en GitHub',
+            viewMore: 'Próximamente más en GitHub',
             items: [
                 {
                     title: 'E-Commerce Dashboard',
@@ -57,7 +60,7 @@ export const translations = {
                 },
                 {
                     title: 'Weather App',
-                    description: 'Aplicación del clima con geolocalización, pronóstico extendido y animaciones dinámicas según las condiciones meteorológicas. API de Open-Mateo.',
+                    description: 'Aplicación del clima con geolocalización, pronóstico extendido y animaciones dinámicas según las condiciones meteorológicas. API de Open-Meteo.',
                 },
                 {
                     title: 'Task Manager',
@@ -65,7 +68,7 @@ export const translations = {
                 },
                 {
                     title: 'Portfolio Website',
-                    description: 'Este mismo portafolio — diseñado y desarrollado desde cero con React, TailwindCSS y Framer Motion. Performance optimizado y fully responsive.',
+                    description: 'Este mismo portafolio — diseñado y desarrollado desde cero con React, TailwindCSS y Framer Motion. Performance optimizado y totalmente responsive.',
                 },
             ],
         },
@@ -141,7 +144,7 @@ export const translations = {
             label: '01. About Me',
             titleStart: 'A bit about',
             titleHighlight: 'who I am',
-            bio1: "I'm Joaquin Sposato, a frontend developer passionate about building modern, functional interfaces. I love transforming ideas into digital experiences that are intuitive, fast, and visually appealing.",
+            bio1: "I'm Joaquín Sposato, a frontend developer passionate about building modern, functional interfaces. I love transforming ideas into digital experiences that are intuitive, fast, and visually appealing.",
             bio2Start: 'My main stack revolves around',
             bio2Highlight: 'React',
             bio2End: 'and the modern JavaScript ecosystem. I enjoy working with tools that allow building quality products: from component design to performance optimization.',
@@ -162,12 +165,15 @@ export const translations = {
                 tools: 'Tools',
                 learning: 'Learning',
             },
+            filters: {
+                all: 'All'
+            },
         },
         projects: {
             label: '03. Projects',
             titleStart: "What I've",
             titleHighlight: 'built',
-            viewMore: 'View more on GitHub',
+            viewMore: 'More coming soon on GitHub',
             items: [
                 {
                     title: 'E-Commerce Dashboard',
@@ -175,7 +181,7 @@ export const translations = {
                 },
                 {
                     title: 'Weather App',
-                    description: 'Weather app with geolocation, extended forecast, and dynamic animations based on weather conditions. OpenWeather API.',
+                    description: 'Weather app with geolocation, extended forecast, and dynamic animations based on weather conditions. Open-Meteo API.',
                 },
                 {
                     title: 'Task Manager',

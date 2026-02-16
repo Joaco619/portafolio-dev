@@ -6,7 +6,7 @@ export default function About() {
 
     const stats = [
         { value: '3+', label: t.about.stats.years },
-        { value: '15+', label: t.about.stats.projects },
+        { value: '6+', label: t.about.stats.projects },
         { value: '10+', label: t.about.stats.technologies },
     ];
 

@@ -49,17 +49,17 @@ export default function Navbar() {
             initial={{ y: -80 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled
-                ? 'bg-[#0a0f0d]/80 backdrop-blur-xl border-[var(--color-border-subtle)] shadow-lg'
-                : 'bg-[#0a0f0d]/0 border-transparent shadow-none'
-                }`}
+            className={`fixed z-50 transition-all duration-300 border-r left-0 top-0 right-0 md:bottom-0 md:w-56 md:h-screen md:right-auto ${scrolled
+                ? 'backdrop-blur-xl border-[var(--color-border-subtle)] shadow-lg'
+                : 'border-transparent shadow-none'
+                } bg-transparent`}
         >
-            <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div className="flex items-center justify-between md:flex-col md:items-start md:justify-start md:py-6 md:px-4 h-16 md:h-full">
                 
                 <a
                     href="#hero"
                     onClick={(e) => handleClick(e, '#hero')}
-                    className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity"
+                    className="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity md:mb-6 md:px-2"
                 >
                     <span className="text-[var(--color-accent)]">&lt;</span>
                     JS
@@ -67,7 +67,7 @@ export default function Navbar() {
                 </a>
 
                 
-                <div className="hidden md:flex items-center gap-1">
+                <div className="hidden md:flex md:flex-col md:items-start md:gap-2 md:w-full md:px-2">
                     {navLinks.map((link) => {
                         const isActive = activeSection === link.href.replace('#', '');
                         return (
@@ -75,7 +75,7 @@ export default function Navbar() {
                                 key={link.href}
                                 href={link.href}
                                 onClick={(e) => handleClick(e, link.href)}
-                                className={`relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${isActive
+                                className={`relative w-full block px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${isActive
                                     ? 'text-[var(--color-accent)]'
                                     : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
                                     }`}
@@ -93,10 +93,9 @@ export default function Navbar() {
                         );
                     })}
 
-                    
                     <button
                         onClick={toggleLanguage}
-                        className="ml-2 px-3 py-1.5 rounded-lg border border-[var(--color-border-card)] text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 transition-all"
+                        className="mt-3 px-3 py-1.5 rounded-lg border border-[var(--color-border-card)] text-xs font-mono text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 transition-all md:ml-0"
                         aria-label="Toggle language"
                     >
                         {language === 'es' ? 'EN' : 'ES'}
@@ -129,7 +128,7 @@ export default function Navbar() {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="md:hidden bg-[var(--color-bg-secondary)]/95 backdrop-blur-xl border-b border-[var(--color-border-subtle)] overflow-hidden"
+                        className="md:hidden bg-transparent backdrop-blur-none border-b border-transparent overflow-hidden"
                     >
                         <div className="px-6 py-4 flex flex-col gap-1">
                             {navLinks.map((link) => {

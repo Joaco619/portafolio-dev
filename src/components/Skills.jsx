@@ -1,34 +1,107 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
+import { memo, useMemo } from 'react';
 
 const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
-        transition: { staggerChildren: 0.06 },
+        transition: { staggerChildren: 0.04 },
     },
 };
 
 const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15, scale: 0.95 },
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+        scale: 1,
+        transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
     },
 };
 
+const SkillCard = memo(({ skill, prefersReducedMotion }) => (
+    <motion.div
+        variants={cardVariants}
+        whileHover={prefersReducedMotion ? {} : { y: -6, scale: 1.03 }}
+        whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
+        className="group relative flex flex-col items-center gap-3 p-5 rounded-xl glass-card cursor-default
+                   hover:border-[var(--color-accent)]/30 transition-all duration-300 overflow-hidden"
+    >
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/0 via-[var(--color-accent)]/0 to-[var(--color-accent)]/0
+                        group-hover:from-[var(--color-accent)]/5 group-hover:via-transparent group-hover:to-transparent
+                        transition-all duration-500 opacity-0 group-hover:opacity-100" />
+        
+        <div className="relative w-12 h-12 rounded-full bg-[var(--color-surface)]/50 flex items-center justify-center
+                        group-hover:bg-[var(--color-surface)]/80 transition-all duration-300">
+            <i
+                className={`${skill.icon} text-2xl transition-all duration-300 group-hover:scale-125 group-hover:rotate-6`}
+                style={{ color: skill.color }}
+            />
+        </div>
+        
+        <span className="relative text-xs font-semibold text-[var(--color-text-secondary)] 
+                         group-hover:text-[var(--color-text-primary)] transition-colors duration-300 text-center">
+            {skill.name}
+        </span>
+        
+        <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-transparent via-[var(--color-accent)] to-transparent
+                        group-hover:w-full transition-all duration-500" />
+    </motion.div>
+));
+
+SkillCard.displayName = 'SkillCard';
+
+const SkillCategory = memo(({ category, index, prefersReducedMotion }) => {
+    const { title, icon, skills } = category;
+    
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.45, delay: prefersReducedMotion ? 0 : index * 0.08 }}
+        >
+            <div className="flex items-center gap-3 mb-7">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--color-accent-dim)] to-[var(--color-accent-dim)]/50 
+                                flex items-center justify-center shadow-lg shadow-[var(--color-accent)]/10">
+                    <i className={`${icon} text-base text-[var(--color-accent)]`} />
+                </div>
+                <h3 className="text-xl font-bold text-[var(--color-text-primary)] tracking-tight">
+                    {title}
+                </h3>
+                <div className="flex-1 h-[2px] bg-gradient-to-r from-[var(--color-border-subtle)] to-transparent" />
+            </div>
+
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+            >
+                {skills.map((skill) => (
+                    <SkillCard key={skill.name} skill={skill} prefersReducedMotion={prefersReducedMotion} />
+                ))}
+            </motion.div>
+        </motion.div>
+    );
+});
+
+SkillCategory.displayName = 'SkillCategory';
+
 export default function Skills() {
     const { t } = useLanguage();
+    const prefersReducedMotion = useReducedMotion();
 
-    const categories = [
+    const categories = useMemo(() => [
         {
-            title: t.skills.categories.frontend,
+            title: "Lenguajes Aprendidos",
             icon: 'fa-solid fa-code',
             skills: [
                 { name: 'React', icon: 'fa-brands fa-react', color: '#61DAFB' },
                 { name: 'JavaScript', icon: 'fa-brands fa-js', color: '#F7DF1E' },
-                { name: 'TypeScript', icon: 'fa-solid fa-code', color: '#3178C6' },
+                { name: 'Node.js', icon: 'fa-brands fa-node-js', color: '#339933' },
                 { name: 'HTML5', icon: 'fa-brands fa-html5', color: '#E34F26' },
                 { name: 'CSS3', icon: 'fa-brands fa-css3-alt', color: '#1572B6' },
                 { name: 'TailwindCSS', icon: 'fa-solid fa-wind', color: '#06B6D4' },
@@ -40,86 +113,59 @@ export default function Skills() {
             skills: [
                 { name: 'Git', icon: 'fa-brands fa-git-alt', color: '#F05032' },
                 { name: 'GitHub', icon: 'fa-brands fa-github', color: '#ffffff' },
-                { name: 'VS Code', icon: 'fa-solid fa-laptop-code', color: '#007ACC' },
-                { name: 'Figma', icon: 'fa-brands fa-figma', color: '#F24E1E' },
                 { name: 'npm', icon: 'fa-brands fa-npm', color: '#CB3837' },
-                { name: 'Vite', icon: 'fa-solid fa-bolt', color: '#646CFF' },
             ],
         },
         {
             title: t.skills.categories.learning,
             icon: 'fa-solid fa-graduation-cap',
             skills: [
-                { name: 'Node.js', icon: 'fa-brands fa-node-js', color: '#339933' },
                 { name: 'Next.js', icon: 'fa-solid fa-n', color: '#ffffff' },
                 { name: 'Python', icon: 'fa-brands fa-python', color: '#3776AB' },
-                { name: 'Docker', icon: 'fa-brands fa-docker', color: '#2496ED' },
             ],
         },
-    ];
+    ], [t.skills.categories]);
 
     return (
-        <section id="skills" className="py-28 relative">
-            <div className="max-w-6xl mx-auto px-6">
-                
+        <section id="skills" className="py-28 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-accent)]/[0.02] to-transparent pointer-events-none" />
+            
+            <div className="max-w-6xl mx-auto px-6 relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.5 }}
                     className="mb-16"
                 >
-                    <span className="text-sm font-mono text-[var(--color-accent)] mb-2 block">
+                    <span className="text-sm font-mono text-[var(--color-accent)] mb-2 block font-semibold">
                         <i className="fa-solid fa-layer-group mr-2" />{t.skills.label}
                     </span>
                     <h2 className="text-3xl sm:text-4xl font-bold">
-                        {t.skills.titleStart} <span className="gradient-text">{t.skills.titleHighlight}</span>
+                        {t.skills.titleStart}{' '}
+                        <span className="gradient-text inline-block relative">
+                            {t.skills.titleHighlight}
+                            <motion.div
+                                initial={{ scaleX: 0 }}
+                                whileInView={{ scaleX: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8, delay: 0.3 }}
+                                className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r 
+                                           from-[var(--color-accent)]/0 via-[var(--color-accent)] to-[var(--color-accent)]/0 rounded-full"
+                                style={{ originX: 0.5 }}
+                            />
+                        </span>
                     </h2>
                 </motion.div>
 
                 <div className="space-y-12">
-                    {categories.map((cat, catIdx) => (
-                        <motion.div
-                            key={cat.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-60px' }}
-                            transition={{ duration: 0.5, delay: catIdx * 0.1 }}
-                        >
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="w-8 h-8 rounded-lg bg-[var(--color-accent-dim)] flex items-center justify-center">
-                                    <i className={`${cat.icon} text-sm text-[var(--color-accent)]`} />
-                                </div>
-                                <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">{cat.title}</h3>
-                                <div className="flex-1 h-px bg-[var(--color-border-subtle)]" />
-                            </div>
-
-                            <motion.div
-                                variants={containerVariants}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: '-40px' }}
-                                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
-                            >
-                                {cat.skills.map((skill) => (
-                                    <motion.div
-                                        key={skill.name}
-                                        variants={cardVariants}
-                                        whileHover={{ y: -4, scale: 1.02 }}
-                                        className="group flex flex-col items-center gap-3 p-4 rounded-xl glass-card cursor-default
-                      hover:border-[var(--color-accent)]/20 transition-all duration-300"
-                                    >
-                                        <i
-                                            className={`${skill.icon} text-2xl transition-all duration-300 group-hover:scale-110`}
-                                            style={{ color: skill.color }}
-                                        />
-                                        <span className="text-xs font-medium text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)] transition-colors">
-                                            {skill.name}
-                                        </span>
-                                    </motion.div>
-                                ))}
-                            </motion.div>
-                        </motion.div>
+                    {categories.map((category, index) => (
+                        <SkillCategory 
+                            key={category.title} 
+                            category={category} 
+                            index={index}
+                            prefersReducedMotion={prefersReducedMotion}
+                        />
                     ))}
                 </div>
             </div>

@@ -49,7 +49,7 @@ Error generating stack: `+i.message+`
                                    font-semibold text-sm\r
                                    shadow-xl shadow-[var(--color-accent)]/30\r
                                    hover:shadow-2xl hover:shadow-[var(--color-accent)]/40\r
-                                   transition-all duration-300`,children:[x.jsx("i",{className:"fa-solid fa-rocket"}),f.hero.ctaProjects]}),x.jsxs(at.a,{href:"#contact",onClick:v=>y(v,"#contact"),whileHover:p?{}:{scale:1.05,y:-2},whileTap:p?{}:{scale:.98},className:`inline-flex items-center gap-2 px-6 py-3 rounded-xl \r
+                                   transition-all duration-300`,children:[x.jsx("i",{className:"fa-solid fa-rocket"}),f.hero.ctaProjects]}),x.jsxs(at.a,{href:"#contacto",onClick:v=>y(v,"#contacto"),whileHover:p?{}:{scale:1.05,y:-2},whileTap:p?{}:{scale:.98},className:`inline-flex items-center gap-2 px-6 py-3 rounded-xl \r
                                    border border-[var(--color-border-card)] text-[var(--color-text-primary)] \r
                                    font-semibold text-sm backdrop-blur-sm\r
                                    hover:bg-[var(--color-surface)]/40 hover:border-[var(--color-accent)]/40\r

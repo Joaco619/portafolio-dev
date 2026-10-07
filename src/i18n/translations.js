@@ -3,7 +3,7 @@ export const translations = {
         nav: {
             home: 'Inicio',
             about: 'Sobre mí',
-            skills: 'Skills',
+            skills: 'Habilidades',
             projects: 'Proyectos',
             experience: 'Experiencia',
             contact: 'Contacto',
@@ -12,7 +12,7 @@ export const translations = {
         hero: {
             badge: 'Disponible para trabajar',
             greeting: 'Hola, soy',
-            descriptionStart: 'Creo experiencias web modernas, rápidas y accesibles. Enfocado en interfaces que no solo se ven bien, sino que se',
+            descriptionStart: 'Creo experiencias web modernas, y hermosas visualmente. Enfocado en interfaces que no solo se ven bien, sino que se',
             descriptionEmphasis: 'sienten',
             descriptionEnd: 'bien.',
             ctaProjects: 'Ver Proyectos',
@@ -26,8 +26,8 @@ export const translations = {
             bio1: 'Soy Joaquín Sposato, un desarrollador frontend apasionado por crear interfaces modernas y funcionales. Me encanta transformar ideas en experiencias digitales que sean intuitivas, rápidas y visualmente atractivas.',
             bio2Start: 'Mi stack principal gira alrededor de',
             bio2Highlight: 'React',
-            bio2End: 'y el ecosistema JavaScript moderno. Disfruto trabajando con herramientas que permitan construir productos de calidad: desde el diseño de componentes hasta la optimización del rendimiento.',
-            bio3: 'Cuando no estoy escribiendo código, probablemente esté explorando nuevas tecnologías, contribuyendo a proyectos open source o mejorando mis habilidades en diseño UI/UX.',
+            bio2End: 'y sobre todo el desarrollo con JavaScript especialmente en Discord. Disfruto trabajando con herramientas que permitan construir productos de calidad: desde el diseño de componentes hasta la optimización del rendimiento.',
+            bio3: 'Cuando no estoy escribiendo código, probablemente esté aprendiendo más sobre el mundo de la programación, practicando con proyectos personales o mejorando mis habilidades en diseño UI/UX.',
             stats: {
                 years: 'Años de experiencia',
                 projects: 'Proyectos completados',
@@ -36,7 +36,7 @@ export const translations = {
             tagCloud: ['React', 'JavaScript', 'TailwindCSS', 'Node.js'],
         },
         skills: {
-            label: '02. Skills',
+            label: '03. Habilidades',
             titleStart: 'Mi',
             titleHighlight: 'stack tecnológico',
             categories: {
@@ -49,7 +49,7 @@ export const translations = {
             },
         },
         projects: {
-            label: '03. Proyectos',
+            label: '02. Proyectos',
             titleStart: 'Lo que he',
             titleHighlight: 'construido',
             viewMore: 'Próximamente más en GitHub',
@@ -94,7 +94,7 @@ export const translations = {
         contact: {
             label: '05. Contacto',
             titleStart: '¿Trabajamos',
-            titleHighlight: 'juntos',
+            titleHighlight: 'juntos',   
             titleEnd: '?',
             subtitle: 'Estoy abierto a nuevas oportunidades y colaboraciones. Si tenés un proyecto en mente o simplemente querés saludar, ¡escribime!',
             socialLabel: '// redes sociales',
@@ -141,8 +141,8 @@ export const translations = {
             bio1: "I'm Joaquín Sposato, a frontend developer passionate about building modern, functional interfaces. I love transforming ideas into digital experiences that are intuitive, fast, and visually appealing.",
             bio2Start: 'My main stack revolves around',
             bio2Highlight: 'React',
-            bio2End: 'and the modern JavaScript ecosystem. I enjoy working with tools that allow building quality products: from component design to performance optimization.',
-            bio3: "When I'm not writing code, I'm probably exploring new technologies, contributing to open source projects, or improving my UI/UX design skills.",
+            bio2End: 'and above all, I enjoy JavaScript development, especially on Discord. I love working with tools that allow me to build quality products: from component design to performance optimization.',
+            bio3: "When I'm not writing code, I'm probably learning more about the world of programming, practicing with personal projects, or improving my UI/UX design skills.",
             stats: {
                 years: 'Years of Experience',
                 projects: 'Completed Projects',
@@ -151,7 +151,7 @@ export const translations = {
             tagCloud: ['React', 'JavaScript', 'TailwindCSS', 'Node.js'],
         },
         skills: {
-            label: '02. Skills',
+            label: '03. Skills',
             titleStart: 'My',
             titleHighlight: 'tech stack',
             categories: {
@@ -164,7 +164,7 @@ export const translations = {
             },
         },
         projects: {
-            label: '03. Projects',
+            label: '02. Projects',
             titleStart: "What I've",
             titleHighlight: 'built',
             viewMore: 'More coming soon on GitHub',

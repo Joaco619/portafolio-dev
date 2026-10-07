@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '../i18n/LanguageContext';
 
-export default function Experience() {
+export default function Experiencia() {
     const { t } = useLanguage();
 
     const experienceMetadata = [
@@ -21,9 +21,8 @@ export default function Experience() {
     }));
 
     return (
-        <section id="experience" className="py-28 relative">
+        <section id="experiencia" className="py-28 relative">
             <div className="max-w-4xl mx-auto px-6">
-                
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -41,9 +40,7 @@ export default function Experience() {
 
                 
                 <div className="relative">
-                    
                     <div className="absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-[var(--color-accent)]/40 via-[var(--color-green-700)]/20 to-transparent" />
-
                     <div className="space-y-10">
                         {experiences.map((exp, i) => (
                             <motion.div
@@ -54,12 +51,9 @@ export default function Experience() {
                                 transition={{ duration: 0.5, delay: i * 0.15 }}
                                 className="relative pl-14"
                             >
-                                
                                 <div className="absolute left-0 top-1 w-10 h-10 rounded-xl bg-[var(--color-bg-card)] border border-[var(--color-border-card)] flex items-center justify-center">
                                     <i className={`${exp.icon} text-sm text-[var(--color-accent)]`} />
                                 </div>
-
-                                
                                 <div className="p-5 rounded-xl glass-card hover:border-[var(--color-accent)]/15 transition-all duration-300">
                                     <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                                         <div>

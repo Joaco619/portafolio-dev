@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 
 const roles = [
     'Frontend Developer',
-    'React Specialist',
+    'Discord Developer',
     'UI Engineer',
     'Web Developer',
 ];
@@ -137,8 +137,8 @@ export default function Hero() {
                     className="flex flex-wrap items-center justify-center gap-4 mb-16"
                 >
                     <motion.a
-                        href="#projects"
-                        onClick={(e) => handleSmoothScroll(e, '#projects')}
+                        href="#proyectos"
+                        onClick={(e) => handleSmoothScroll(e, '#proyectos')}
                         whileHover={prefersReducedMotion ? {} : { scale: 1.05, y: -2 }}
                         whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl 
@@ -152,8 +152,8 @@ export default function Hero() {
                         {t.hero.ctaProjects}
                     </motion.a>
                     <motion.a
-                        href="#contact"
-                        onClick={(e) => handleSmoothScroll(e, '#contact')}
+                        href="#contacto"
+                        onClick={(e) => handleSmoothScroll(e, '#contacto')}
                         whileHover={prefersReducedMotion ? {} : { scale: 1.05, y: -2 }}
                         whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
                         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl 

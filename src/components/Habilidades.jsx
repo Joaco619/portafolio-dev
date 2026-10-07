@@ -31,20 +31,28 @@ const SkillCard = memo(({ skill, prefersReducedMotion }) => (
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/0 via-[var(--color-accent)]/0 to-[var(--color-accent)]/0
                         group-hover:from-[var(--color-accent)]/5 group-hover:via-transparent group-hover:to-transparent
                         transition-all duration-500 opacity-0 group-hover:opacity-100" />
-        
+
         <div className="relative w-12 h-12 rounded-full bg-[var(--color-surface)]/50 flex items-center justify-center
                         group-hover:bg-[var(--color-surface)]/80 transition-all duration-300">
-            <i
-                className={`${skill.icon} text-2xl transition-all duration-300 group-hover:scale-125 group-hover:rotate-6`}
-                style={{ color: skill.color }}
-            />
+            {skill.icon.startsWith('/') || skill.icon.endsWith('.png') ? (
+                <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    className="w-1/2 h-1/2 object-contain transition-all duration-300 group-hover:scale-110"
+                />
+            ) : (
+                <i
+                    className={`${skill.icon} text-2xl transition-all duration-300 group-hover:scale-125 group-hover:rotate-6`}
+                    style={{ color: skill.color }}
+                />
+            )}
         </div>
-        
+
         <span className="relative text-xs font-semibold text-[var(--color-text-secondary)] 
                          group-hover:text-[var(--color-text-primary)] transition-colors duration-300 text-center">
             {skill.name}
         </span>
-        
+
         <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-transparent via-[var(--color-accent)] to-transparent
                         group-hover:w-full transition-all duration-500" />
     </motion.div>
@@ -54,7 +62,7 @@ SkillCard.displayName = 'SkillCard';
 
 const SkillCategory = memo(({ category, index, prefersReducedMotion }) => {
     const { title, icon, skills } = category;
-    
+
     return (
         <motion.div
             initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
@@ -90,7 +98,7 @@ const SkillCategory = memo(({ category, index, prefersReducedMotion }) => {
 
 SkillCategory.displayName = 'SkillCategory';
 
-export default function Skills() {
+export default function Habilidades() {
     const { t } = useLanguage();
     const prefersReducedMotion = useReducedMotion();
 
@@ -101,10 +109,10 @@ export default function Skills() {
             skills: [
                 { name: 'React', icon: 'fa-brands fa-react', color: '#61DAFB' },
                 { name: 'JavaScript', icon: 'fa-brands fa-js', color: '#F7DF1E' },
-                { name: 'Node.js', icon: 'fa-brands fa-node-js', color: '#339933' },
+                { name: 'Discord.js', icon: './discordjs.png', color: '#06B6D4' },
                 { name: 'HTML5', icon: 'fa-brands fa-html5', color: '#E34F26' },
                 { name: 'CSS3', icon: 'fa-brands fa-css3-alt', color: '#1572B6' },
-                { name: 'TailwindCSS', icon: 'fa-solid fa-wind', color: '#06B6D4' },
+                { name: 'TailwindCSS', icon: './Tailwind_CSS.png', color: '#06B6D4' },
                 { name: 'MongoDB', icon: 'fa-solid fa-leaf', color: '#47A248' },
             ],
         },
@@ -121,18 +129,17 @@ export default function Skills() {
             title: t.skills.categories.learning,
             icon: 'fa-solid fa-graduation-cap',
             skills: [
-                { name: 'Next.js', icon: 'fa-solid fa-n', color: '#ffffff' },
+                { name: 'Next.js', icon: './nextjs.png', color: '#ffffff' },
                 { name: 'Python', icon: 'fa-brands fa-python', color: '#3776AB' },
-                { name: 'Lua', icon: 'fa-solid fa-dragon', color: '#000080' },
-                { name: 'TypeScript', icon: 'fa-solid fa-t', color: '#3178C6' },
+                { name: 'Lua', icon: './lua.png', color: '#000080' },
             ],
         },
     ], [t.skills.categories]);
 
     return (
-        <section id="skills" className="py-28 relative overflow-hidden">
+        <section id="habilidades" className="py-28 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-accent)]/[0.02] to-transparent pointer-events-none" />
-            
+
             <div className="max-w-6xl mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 25 }}
@@ -163,9 +170,9 @@ export default function Skills() {
 
                 <div className="space-y-12">
                     {categories.map((category, index) => (
-                        <SkillCategory 
-                            key={category.title} 
-                            category={category} 
+                        <SkillCategory
+                            key={category.title}
+                            category={category}
                             index={index}
                             prefersReducedMotion={prefersReducedMotion}
                         />

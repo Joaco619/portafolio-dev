@@ -10,11 +10,11 @@ export default function Navbar() {
 
     const navLinks = [
         { label: t.nav.home, href: '#hero' },
-        { label: t.nav.about, href: '#about' },
-        { label: t.nav.skills, href: '#skills' },
-        { label: t.nav.projects, href: '#projects' },
-        { label: t.nav.experience, href: '#experience' },
-        { label: t.nav.contact, href: '#contact' },
+        { label: t.nav.about, href: '#sobre-mi' },
+        { label: t.nav.projects, href: '#proyectos' },
+        { label: t.nav.skills, href: '#habilidades' },
+        { label: t.nav.experience, href: '#experiencia' },
+        { label: t.nav.contact, href: '#contacto' },
     ];
 
     useEffect(() => {
@@ -101,8 +101,6 @@ export default function Navbar() {
                         {language === 'es' ? 'EN' : 'ES'}
                     </button>
                 </div>
-
-                
                 <div className="md:hidden flex items-center gap-4">
                     <button
                         onClick={toggleLanguage}
@@ -119,8 +117,6 @@ export default function Navbar() {
                     </button>
                 </div>
             </div>
-
-            
             <AnimatePresence>
                 {mobileOpen && (
                     <motion.div

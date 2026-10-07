@@ -1,13 +1,13 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import { UnderwaterBackground } from './components/UnderwaterBackground';
 import { LanguageProvider } from './i18n/LanguageContext';
+import { UnderwaterBackground } from './components/UnderwaterBackground';
+import Contacto from './components/Contacto';
+import Experiencia from './components/Experiencia';
+import Footer from './components/Footer';
+import Habilidades from './components/Habilidades';
+import Hero from './components/Hero';
+import Navbar from './components/Navbar';
+import Proyectos from './components/Proyectos';
+import SobreMi from './components/SobreMi';
 
 function App() {
   return (
@@ -17,11 +17,11 @@ function App() {
         <Navbar />
         <main>
           <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Experience />
-          <Contact />
+          <SobreMi />
+          <Proyectos />
+          <Habilidades />
+          <Experiencia />
+          <Contacto />
         </main>
         <Footer />
       </div>

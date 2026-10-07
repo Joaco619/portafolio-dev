@@ -3,13 +3,12 @@ import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import emailjs from '@emailjs/browser';
 
-export default function Contact() {
+export default function Contacto() {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState({ type: '', message: '' });
     const [loading, setLoading] = useState(false);
     const { t } = useLanguage();
 
-    // Initialize EmailJS with your PUBLIC_KEY from https://dashboard.emailjs.com/
     emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
     const handleChange = (e) => {
@@ -48,7 +47,7 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="py-28 relative">
+        <section id="contacto" className="py-28 relative">
             <div className="max-w-6xl mx-auto px-6">
                 
                 <motion.div

@@ -76,8 +76,7 @@ const ProjectCard = memo(({ project, index, prefersReducedMotion }) => (
                 {project.title}
             </h3>
             
-            <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-6
-                          line-clamp-3 group-hover:text-[var(--color-text-primary)]/80 transition-colors duration-300">
+            <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-6 group-hover:text-[var(--color-text-primary)]/80 transition-colors duration-300">
                 {project.description}
             </p>
 
@@ -110,7 +109,7 @@ const ProjectCard = memo(({ project, index, prefersReducedMotion }) => (
 
 ProjectCard.displayName = 'ProjectCard';
 
-export default function Projects() {
+export default function Proyectos() {
     const { t } = useLanguage();
     const prefersReducedMotion = useReducedMotion();
 
@@ -119,13 +118,11 @@ export default function Projects() {
             tags: ['React', 'TailwindCSS', 'Javascript', 'NodeJS'],
             icon: 'fa-solid fa-chart-line',
             accent: 'var(--color-green-500)',
-            // Sin github ni live - NO aparecerán iconos
         },
         {
             tags: ['HTML', 'CSS', 'JavaScript',],
             icon: 'fa-solid fa-brush',
             accent: 'var(--color-green-400)',
-            // Sin github ni live - NO aparecerán iconos
         },
         {
             tags: ['React', 'TypeScript', 'LocalStorage'],
@@ -133,7 +130,6 @@ export default function Projects() {
             live: 'https://joaco619.github.io/task_manager/',
             icon: 'fa-solid fa-list-check',
             accent: 'var(--color-green-600)',
-            // Con ambos - aparecerán AMBOS iconos
         },
         {
             tags: ['React', 'TailwindCSS', 'Framer Motion', 'Vite'],
@@ -141,7 +137,6 @@ export default function Projects() {
             live: 'https://joaco619.github.io/portafolio-dev/',
             icon: 'fa-solid fa-laptop-code',
             accent: 'var(--color-green-300)',
-            // Con ambos - aparecerán AMBOS iconos
         },
     ], []);
 
@@ -153,7 +148,7 @@ export default function Projects() {
     [t.projects.items, projectMetadata]);
 
     return (
-        <section id="projects" className="py-28 relative overflow-hidden">
+        <section id="proyectos" className="py-28 relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,var(--color-accent)/0.03,transparent_60%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,var(--color-accent)/0.02,transparent_60%)]" />
             

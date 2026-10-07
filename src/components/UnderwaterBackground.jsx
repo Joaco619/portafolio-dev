@@ -1,202 +1,174 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { cn } from "../lib/utils";
 
 export function UnderwaterBackground({
-    className,
-    children,
-    intensity = 1,
-    speed = 1,
+  className,
+  children,
+  intensity = 1,
+  speed = 1,
 }) {
-    const canvasRef = useRef(null);
-    const containerRef = useRef(null);
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+  const animationRef = useRef(null);
 
-    
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const container = containerRef.current;
-        if (!canvas || !container) return;
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
 
-        const ctx = canvas.getContext("2d");
-        if (!ctx) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-        let width = container.clientWidth;
-        let height = container.clientHeight;
-        canvas.width = width;
-        canvas.height = height;
+    let width = 0;
+    let height = 0;
+    let dpr = window.devicePixelRatio || 1;
+    let tick = 0;
 
-        let animationId;
-        let tick = 0;
+    const particleCount = Math.floor(40 * intensity);
 
-        const particles = Array.from({ length: 40 }, () => ({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            size: 1 + Math.random() * 2,
-            speed: 0.3 + Math.random() * 0.4,
-            opacity: 0.4 + Math.random() * 0.4,
-            wobbleOffset: Math.random() * Math.PI * 2,
-        }));
+    const particles = Array.from({ length: particleCount }, () => ({
+      x: 0,
+      y: 0,
+      size: 0,
+      speed: 0,
+      opacity: 0,
+      wobbleOffset: Math.random() * Math.PI * 2,
+    }));
 
-        const handleResize = () => {
-            width = container.clientWidth;
-            height = container.clientHeight;
-            canvas.width = width;
-            canvas.height = height;
-        };
+    const resetParticle = (p, randomY = true) => {
+      p.x = Math.random() * width;
+      p.y = randomY ? Math.random() * height : height + 10;
+      p.size = 1 + Math.random() * 2;
+      p.speed = 0.3 + Math.random() * 0.4;
+      p.opacity = 0.4 + Math.random() * 0.4;
+    };
 
-        const ro = new ResizeObserver(handleResize);
-        ro.observe(container);
+    const resize = () => {
+      width = container.clientWidth;
+      height = container.clientHeight;
+      dpr = window.devicePixelRatio || 1;
 
-        const animate = () => {
-            tick += 0.02 * speed;
-            ctx.clearRect(0, 0, width, height);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
 
-            for (const p of particles) {
-                p.y -= p.speed * speed;
-                p.x += Math.sin(tick * 1.5 + p.wobbleOffset) * 0.4;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-                if (p.y < -10) {
-                    p.y = height + 10;
-                    p.x = Math.random() * width;
-                }
+      particles.forEach((p) => resetParticle(p));
+    };
 
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(180, 230, 255, ${p.opacity})`;
-                ctx.fill();
-            }
+    const animate = () => {
+      tick += 0.02 * speed;
+      ctx.clearRect(0, 0, width, height);
 
-            animationId = requestAnimationFrame(animate);
-        };
+      for (const p of particles) {
+        p.y -= p.speed * speed;
+        p.x += Math.sin(tick + p.wobbleOffset) * 0.5;
 
-        animationId = requestAnimationFrame(animate);
+        if (p.y < -10) resetParticle(p, false);
 
-        return () => {
-            cancelAnimationFrame(animationId);
-            ro.disconnect();
-        };
-    }, [speed]);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(180,230,255,${p.opacity})`;
+        ctx.fill();
+      }
 
-    const duration1 = 8 / speed;
-    const duration2 = 12 / speed;
-    const duration3 = 10 / speed;
+      animationRef.current = requestAnimationFrame(animate);
+    };
 
-    return (
-        <div
-            ref={containerRef}
-            className={cn("fixed inset-0 overflow-hidden -z-10", className)}
+    resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(container);
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationRef.current);
+      observer.disconnect();
+    };
+  }, [speed, intensity]);
+
+  const duration = (base) => base / speed;
+
+  return (
+    <div
+      ref={containerRef}
+      className={cn("fixed inset-0 overflow-hidden -z-10", className)}
+      style={{
+        background:
+          "linear-gradient(180deg, #0a1a15 0%, #051a14 40%, #020f0a 100%)",
+      }}
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="absolute -inset-[50%]"
             style={{
-                background: "linear-gradient(180deg, #0a1a15 0%, #051a14 40%, #020f0a 100%)",
+              opacity: 0.25,
+              background: `radial-gradient(ellipse 40% 35% at ${
+                30 + i * 15
+              }% ${30 + i * 10}%, rgba(23,201,100,${
+                0.35 * intensity
+              }), transparent)`,
+              animation: `caustic${i} ${duration(8 + i * 2)}s ease-in-out infinite`,
+              filter: "blur(45px)",
             }}
-        >
-            
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div
-                    className="absolute -inset-[50%] opacity-30"
-                    style={{
-                        background: `
-              radial-gradient(ellipse 40% 30% at 30% 30%, rgba(23, 201, 100, ${0.4 * intensity}), transparent),
-              radial-gradient(ellipse 35% 40% at 70% 40%, rgba(23, 201, 100, ${0.3 * intensity}), transparent),
-              radial-gradient(ellipse 45% 35% at 50% 60%, rgba(23, 201, 100, ${0.35 * intensity}), transparent)
-            `,
-                        animation: `caustic1 ${duration1}s ease-in-out infinite`,
-                        filter: "blur(40px)",
-                    }}
-                />
-                <div
-                    className="absolute -inset-[50%] opacity-25"
-                    style={{
-                        background: `
-              radial-gradient(ellipse 50% 40% at 60% 35%, rgba(23, 201, 100, ${0.35 * intensity}), transparent),
-              radial-gradient(ellipse 40% 45% at 25% 55%, rgba(23, 201, 100, ${0.3 * intensity}), transparent)
-            `,
-                        animation: `caustic2 ${duration2}s ease-in-out infinite`,
-                        filter: "blur(50px)",
-                    }}
-                />
-                <div
-                    className="absolute -inset-[50%] opacity-20"
-                    style={{
-                        background: `
-              radial-gradient(ellipse 35% 50% at 45% 45%, rgba(23, 201, 100, ${0.4 * intensity}), transparent),
-              radial-gradient(ellipse 45% 35% at 75% 65%, rgba(23, 201, 100, ${0.3 * intensity}), transparent)
-            `,
-                        animation: `caustic3 ${duration3}s ease-in-out infinite`,
-                        filter: "blur(35px)",
-                    }}
-                />
-            </div>
+          />
+        ))}
+      </div>
 
-            
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {[0, 1, 2, 3, 4].map(i => (
-                    <div
-                        key={i}
-                        className="absolute top-0"
-                        style={{
-                            left: `${15 + i * 18}%`,
-                            width: "8%",
-                            height: "100%",
-                            background: `linear-gradient(180deg, rgba(23, 201, 100, ${0.12 * intensity}) 0%, rgba(23, 201, 100, ${0.04 * intensity}) 50%, transparent 80%)`,
-                            transform: "skewX(-5deg)",
-                            animation: `ray ${6 + i * 2}s ease-in-out infinite`,
-                            animationDelay: `${i * -1.5}s`,
-                            filter: "blur(8px)",
-                        }}
-                    />
-                ))}
-            </div>
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute top-0"
+            style={{
+              left: `${15 + i * 18}%`,
+              width: "8%",
+              height: "100%",
+              background: `linear-gradient(180deg, rgba(23,201,100,${
+                0.12 * intensity
+              }) 0%, transparent 80%)`,
+              transform: "skewX(-5deg)",
+              animation: `ray ${duration(6 + i * 2)}s ease-in-out infinite`,
+              animationDelay: `${i * -1.5}s`,
+              filter: "blur(8px)",
+            }}
+          />
+        ))}
+      </div>
 
-            
-            <canvas ref={canvasRef} className="absolute inset-0 h-full w-full pointer-events-none opacity-40" />
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-40"
+      />
 
-            
-            <div
-                className="pointer-events-none absolute inset-x-0 top-0 h-1/4"
-                style={{
-                    background: `linear-gradient(180deg, rgba(23, 201, 100, ${0.2 * intensity}) 0%, transparent 100%)`,
-                }}
-            />
+      {children}
 
-            
-            <div
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3"
-                style={{
-                    background: "linear-gradient(0deg, rgba(0, 15, 10, 0.7) 0%, transparent 100%)",
-                }}
-            />
-
-            
-            <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                    background:
-                        "radial-gradient(ellipse at 50% 30%, transparent 0%, transparent 50%, rgba(0, 10, 5, 0.6) 100%)",
-                }}
-            />
-
-
-
-            <style dangerouslySetInnerHTML={{
-                __html: `
-        @keyframes caustic1 {
-          0%, 100% { transform: translate(0%, 0%) scale(1); }
-          33% { transform: translate(5%, 3%) scale(1.05); }
-          66% { transform: translate(-3%, -2%) scale(0.95); }
-        }
-        @keyframes caustic2 {
-          0%, 100% { transform: translate(0%, 0%) scale(1); }
-          50% { transform: translate(-6%, 4%) scale(1.08); }
-        }
-        @keyframes caustic3 {
-          0%, 100% { transform: translate(0%, 0%) scale(1.02); }
-          33% { transform: translate(4%, -3%) scale(0.96); }
-          66% { transform: translate(-5%, 2%) scale(1.04); }
-        }
-        @keyframes ray {
-          0%, 100% { opacity: 0.6; transform: skewX(-5deg) translateX(0); }
-          50% { opacity: 1; transform: skewX(-8deg) translateX(10px); }
-        }
-      `}} />
-        </div>
-    );
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes caustic1 {
+            0%,100%{transform:translate(0,0) scale(1);}
+            50%{transform:translate(5%,3%) scale(1.05);}
+          }
+          @keyframes caustic2 {
+            0%,100%{transform:translate(0,0) scale(1);}
+            50%{transform:translate(-6%,4%) scale(1.08);}
+          }
+          @keyframes caustic3 {
+            0%,100%{transform:translate(0,0) scale(1.02);}
+            50%{transform:translate(4%,-3%) scale(0.96);}
+          }
+          @keyframes ray {
+            0%,100%{opacity:.6;transform:skewX(-5deg) translateX(0);}
+            50%{opacity:1;transform:skewX(-8deg) translateX(10px);}
+          }
+        `,
+        }}
+      />
+    </div>
+  );
 }

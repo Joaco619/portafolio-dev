@@ -53,6 +53,20 @@ const ProjectCard = memo(({ project, index, prefersReducedMotion }) => (
                             <i className="fa-brands fa-github text-xl" />
                         </motion.a>
                     )}
+                    {project.discord && (
+                        <motion.a
+                            href={project.discord}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            whileHover={prefersReducedMotion ? {} : { scale: 1.15, y: -2 }}
+                            whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                            className="text-[var(--color-text-muted)] hover:text-[#5865F2] 
+                                       transition-colors duration-300"
+                            aria-label="Discord"
+                        >
+                            <i className="fa-brands fa-discord text-xl" />
+                        </motion.a>
+                    )}
                     {project.live && (
                         <motion.a
                             href={project.live}
@@ -116,6 +130,8 @@ export default function Proyectos() {
     const projectMetadata = useMemo(() => [
         {
             tags: ['React', 'TailwindCSS', 'Javascript', 'NodeJS'],
+            live: 'https://lacost.consentt.uno/',
+            discord: 'https://discord.com/invite/FthXVtr47r',
             icon: 'fa-solid fa-chart-line',
             accent: 'var(--color-green-500)',
         },
